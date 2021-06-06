@@ -6,7 +6,43 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/Board.h
+chrono
+-
+iostream
+-
+
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/BoardSimple.h
+
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/Game.h
+Player.h
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/Player.h
+BoardSimple.h
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/BoardSimple.h
+Board.h
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/Board.h
+
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/HumanPlayer.h
+iostream
+-
+Player.h
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/Player.h
+BoardSimple.h
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/BoardSimple.h
+
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/Player.h
+BoardSimple.h
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/BoardSimple.h
+
 C:/Users/Mitchell/Documents/development/c++/floodit-ai/main.cpp
 iostream
 -
+Board.h
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/Board.h
+Game.h
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/Game.h
+Player.h
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/Player.h
+HumanPlayer.h
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/HumanPlayer.h
 
