@@ -62,7 +62,6 @@ int Game::play() {
 
     while(!won) {
         if(player->displayBoard) board->print();
-
         // If the move count was exceeded, DNF
         if(moveCount == maxMoves) return -1;
 
@@ -80,8 +79,6 @@ int Game::play() {
         moveCount++; // Increment the move count
         won = board->checkWin(); // Check if the game has finished
     }
-
-    if(player->displayBoard) std::cout << "Game finished in " << moveCount << " moves.\n";
 
     return moveCount;
 }
