@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/BasicAI.h
+Player.h
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/Player.h
+BoardSimple.h
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/BoardSimple.h
+
 C:/Users/Mitchell/Documents/development/c++/floodit-ai/Board.h
 chrono
 -
@@ -45,4 +51,6 @@ Player.h
 C:/Users/Mitchell/Documents/development/c++/floodit-ai/Player.h
 HumanPlayer.h
 C:/Users/Mitchell/Documents/development/c++/floodit-ai/HumanPlayer.h
+BasicAI.h
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/BasicAI.h
 

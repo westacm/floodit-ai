@@ -149,6 +149,7 @@ void Board::print() {
         }
         std::cout << "\n";
     }
+    std::cout << "\n";
 }
 
 #endif //FLOODIT_AI_BOARD_H

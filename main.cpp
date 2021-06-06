@@ -5,13 +5,17 @@
 #include "Player.h"
 
 #include "HumanPlayer.h"
+#include "BasicAI.h"
 
 int main() {
 
     Player* p = new HumanPlayer();
-    Game game(p, 3, 3);
+    Game game(p, 5, 5, 6, 100, 100);
 
-    game.play();
+    int m = game.play();
+
+    if(m == -1) std::cout << "Error with game! Exiting.\n";
+    else std::cout << "Game finished in " << m << " moves.\n";
 
     return 0;
 }
