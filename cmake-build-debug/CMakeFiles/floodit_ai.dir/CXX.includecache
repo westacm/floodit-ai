@@ -36,12 +36,24 @@ C:/Users/Mitchell/Documents/development/c++/floodit-ai/Player.h
 BoardSimple.h
 C:/Users/Mitchell/Documents/development/c++/floodit-ai/BoardSimple.h
 
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/MyAI.h
+Player.h
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/Player.h
+BoardSimple.h
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/BoardSimple.h
+
 C:/Users/Mitchell/Documents/development/c++/floodit-ai/Player.h
 BoardSimple.h
 C:/Users/Mitchell/Documents/development/c++/floodit-ai/BoardSimple.h
 
 C:/Users/Mitchell/Documents/development/c++/floodit-ai/main.cpp
 iostream
+-
+fstream
+-
+chrono
+-
+sstream
 -
 Board.h
 C:/Users/Mitchell/Documents/development/c++/floodit-ai/Board.h
@@ -53,4 +65,6 @@ HumanPlayer.h
 C:/Users/Mitchell/Documents/development/c++/floodit-ai/HumanPlayer.h
 BasicAI.h
 C:/Users/Mitchell/Documents/development/c++/floodit-ai/BasicAI.h
+MyAI.h
+C:/Users/Mitchell/Documents/development/c++/floodit-ai/MyAI.h
 

@@ -16,9 +16,6 @@ private:
 
     int** grid;
 public:
-    /* Used for determining if there was an error at some point */
-    bool hasError = false;
-
     /* Initialise */
     Board(int seed=-1, int colours=6, int w=20, int h=20);
 
@@ -92,10 +89,7 @@ bool Board::isValidMove(int row, int col, int colour) {
  */
 bool Board::makeMove(int row, int col, int colour) {
     // Player made an invalid move
-    if(!isValidMove(row, col, colour)) {
-        hasError = true; // I'm noting this down on your file
-        return false;
-    }
+    if(!isValidMove(row, col, colour)) return true;
 
     floodFill(row, col, grid[row][col], colour);
 
@@ -139,7 +133,7 @@ bool Board::checkWin() {
 // TODO update print
 /* == Board::print ==
  *
- * Prints the board to the screen.
+ * Prints the board to the screen. Feel free to modify this as you wish.
  */
 void Board::print() {
 

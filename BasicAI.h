@@ -12,7 +12,7 @@ class BasicAI : public Player {
 private:
 
 public:
-    BasicAI(std::string n="Basic AI") : Player(n) { displayBoard = true; }
+    BasicAI(std::string n="Basic AI") : Player(n) { displayBoard = false; }
 
     bool getMove(BoardSimple board, int& colour, int& row, int& col);
 };

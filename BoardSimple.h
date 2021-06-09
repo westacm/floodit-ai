@@ -5,12 +5,14 @@
 #ifndef FLOODIT_AI_BOARDSIMPLE_H
 #define FLOODIT_AI_BOARDSIMPLE_H
 
-
+/*
+ * May be scrapped in the future! We are still experimenting.
+ */
 struct BoardSimple {
-    // 2D grid representing the state of the board, where each value is the colour of the corresponding cell
+    // 2D grid representing the state of the board, where each value is the colour of the corresponding cell (from 0-[colourCount-1])
     int **grid;
 
-    // Width, height, and colour information
+    // Width, height, and colourCount (how many colours are on the board)
     int width, height, colourCount;
 
     BoardSimple(Board* b) {

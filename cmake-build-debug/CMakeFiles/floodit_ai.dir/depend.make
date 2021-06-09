@@ -6,6 +6,7 @@ CMakeFiles/floodit_ai.dir/main.cpp.obj: ../Board.h
 CMakeFiles/floodit_ai.dir/main.cpp.obj: ../BoardSimple.h
 CMakeFiles/floodit_ai.dir/main.cpp.obj: ../Game.h
 CMakeFiles/floodit_ai.dir/main.cpp.obj: ../HumanPlayer.h
+CMakeFiles/floodit_ai.dir/main.cpp.obj: ../MyAI.h
 CMakeFiles/floodit_ai.dir/main.cpp.obj: ../Player.h
 CMakeFiles/floodit_ai.dir/main.cpp.obj: ../main.cpp
 
