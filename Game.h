@@ -9,7 +9,8 @@
 #include "BoardSimple.h"
 #include "Board.h"
 
-class Game {
+class Game
+{
 private:
     Board *board;
     int moveCount;
@@ -17,8 +18,9 @@ private:
     int maxMoves;
 
 public:
-    Game(Board *b, Player *p, int totalMoves=100);
-    Game(Player *p, int width=20, int height=20, int colourCount=6, int totalMoves=100, int seed=-1);
+    Game(Board *b, Player *p, int totalMoves = 100);
+
+    Game(Player *p, int width = 20, int height = 20, int colourCount = 6, int totalMoves = 100, int seed = -1);
 
     int play();
 };
@@ -28,7 +30,8 @@ public:
  *
  * totalMoves - the max number of moves a player can make before DNF'ing
  */
-Game::Game(Board *b, Player *p, int totalMoves) {
+Game::Game(Board *b, Player *p, int totalMoves)
+{
     board = b;
     player = p;
     moveCount = 0;
@@ -40,7 +43,8 @@ Game::Game(Board *b, Player *p, int totalMoves) {
  *
  * totalMoves - the max number of moves a player can make before DNF'ing
  */
-Game::Game(Player *p, int width, int height, int colourCount, int totalMoves, int seed) {
+Game::Game(Player *p, int width, int height, int colourCount, int totalMoves, int seed)
+{
     board = new Board(seed, colourCount, width, height);
 
     player = p;
@@ -56,26 +60,28 @@ Game::Game(Player *p, int width, int height, int colourCount, int totalMoves, in
  * -- Player makes invalid move.
  * -- Max number of moves exceeded.
  */
-int Game::play() {
+int Game::play()
+{
     moveCount = 0;
     bool won = false;
 
-    while(!won) {
-        if(player->displayBoard) board->print();
+    while (!won)
+    {
+        if (player->displayBoard) board->print();
         // If the move count was exceeded, DNF
-        if(moveCount == maxMoves) return -1;
+        if (moveCount == maxMoves) return -1;
 
         // Prepare for getting the move by initialising to an invalid move
         int colour = -1, row = -1, col = -1;
         BoardSimple b(board);
 
         // If the player reports an error, DNF
-        if(!player->getMove(b, colour, row, col)) return -1;
+        if (!player->getMove(b, colour, row, col)) return -1;
 
         // If the board reports an error making the move, DNF
-        if(!board->makeMove(row, col, colour)) return -1;
+        if (!board->makeMove(row, col, colour)) return -1;
 
-        // If we made it here all is good.
+        // If we made it here, all is good.
         moveCount++; // Increment the move count
         won = board->checkWin(); // Check if the game has finished
     }
