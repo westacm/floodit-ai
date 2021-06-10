@@ -15,58 +15,67 @@ using std::cout;
 using std::cin;
 using std::string;
 
-void menu();
+void Menu();
 
 void menu_gen();
-void generateSeedSet(std::string filepath, int seeds=1000, int width=20, int height=20, int colourCount=6, int totalMoves=100);
 
-void menu_run();
-void run_tests(string input, string save);
+void generateSeedSet(std::string filepath, int seeds = 1000, int width = 20, int height = 20, int colourCount = 6, int totalMoves = 100);
 
-int main() {
+void RunAI();
 
-    menu();
+void RunTests(string _seedsetFile, string _resultsFile);
+
+int main()
+{
+    Menu();
 
     return 0;
 }
 
-void menu() {
+void Menu()
+{
     cout << "========= Flood-It =========\n"
-              << "Base code by Mitchell Merry\n"
-              << "Choose an option below:\n"
-              << "1) Run MyAI on seed set\n"
-              << "2) Generate seed set\n";
+         << "Base code by Mitchell Merry, Edits by Broderick Westrope\n"
+         << "Choose an option below:\n"
+         << "[1] Run AI test using a seed set\n"
+         << "[2] Generate a new seed set\n";
 
-    int choice = 0;
-    while(choice < 1 || choice > 2) {
+    char choice;
+    cin >> choice;
+    while (choice < 1 || choice > 2)
+    {
+        cout << "Please enter valid input.\n";
         cin >> choice;
     }
 
-    if(choice == 1) menu_run();
-    else if(choice == 2) menu_gen();
+    if (choice == 1)
+    { RunAI(); }
+    else if (choice == 2)
+    { menu_gen(); }
+    else
+    { cout << "ERROR: Invalid input passed through.\n"; }
 }
 
-///////
-
-void menu_run() {
-    string input, save;
+void RunAI()
+{
+    string seedset, results;
     cout << "Enter the filepath of the seedset to run (e.g. seedsets/test_set.txt):\n";
-    cin >> input;
+    cin >> seedset;
     cin.ignore();
 
-    cout << "Enter the filepath for the results to save to (e.g. results/test_set_r.txt):\n";
-    cin >> save;
+    cout << "Enter the filepath for the results to results to (e.g. results/test_set_r.txt):\n";
+    cin >> results;
     cin.ignore();
 
-    run_tests(input, save);
+    RunTests(seedset, results);
 }
 
-void run_tests(string input, string save) {
-    std::ifstream file(input);
-    std::ofstream out(save);
+void RunTests(string _seedsetFile, string _resultsFile)
+{
+    std::ifstream seedsetInput(_seedsetFile);
 
     string line;
-    getline(file, line);
+    getline(seedsetInput, line);
 
     std::istringstream iss(line);
     int seeds, width, height, colourCount, totalMoves;
@@ -83,7 +92,8 @@ void run_tests(string input, string save) {
 
     int sum = 0;
     string str = "";
-    while(getline(file, line)) {
+    while (getline(seedsetInput, line))
+    {
         int s = stoi(line);
         Player *p = new BasicAI();
         Game game(p, width, height, colourCount, totalMoves, s);
@@ -93,17 +103,17 @@ void run_tests(string input, string save) {
         str += "\n";
     }
 
+    std::ofstream out(_resultsFile);
     out << sum << "\n";
     out << str;
 
 
     out.close();
-    file.close();
+    seedsetInput.close();
 }
 
-///////
-
-void menu_gen() {
+void menu_gen()
+{
     string filepath;
     int seeds, width, height, colourCount, totalMoves;
     cout << "(use '1000 20 20 6 300 seedsets/[filename].txt' for quick setup)\n";
@@ -130,7 +140,8 @@ void menu_gen() {
     generateSeedSet(filepath, seeds, width, height, colourCount, totalMoves);
 }
 
-void generateSeedSet(std::string filepath, int seeds, int width, int height, int colourCount, int totalMoves) {
+void generateSeedSet(std::string filepath, int seeds, int width, int height, int colourCount, int totalMoves)
+{
     std::ofstream out(filepath);
 
     // Write the settings of the set to the top of the file
@@ -138,8 +149,9 @@ void generateSeedSet(std::string filepath, int seeds, int width, int height, int
 
     // Write each generated seed to the file
     srand(time(NULL));
-    for(int i = 0; i < seeds; i++) {
-        out << rand()*rand() << "\n";
+    for (int i = 0; i < seeds; i++)
+    {
+        out << rand() * rand() << "\n";
     }
 
     out.close();

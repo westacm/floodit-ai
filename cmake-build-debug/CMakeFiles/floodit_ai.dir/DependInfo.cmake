@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/Mitchell/Documents/development/c++/floodit-ai/main.cpp" "C:/Users/Mitchell/Documents/development/c++/floodit-ai/cmake-build-debug/CMakeFiles/floodit_ai.dir/main.cpp.obj"
+  "C:/Users/ascle/Desktop/UNI/EXTRA/Flood-It/main.cpp" "C:/Users/ascle/Desktop/UNI/EXTRA/Flood-It/cmake-build-debug/CMakeFiles/floodit_ai.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
