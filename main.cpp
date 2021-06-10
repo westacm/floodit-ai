@@ -80,12 +80,16 @@ void RunTests(string _seedsetFile, string _resultsFile)
     int seedCount, width, height, colourCount, maxMoves;
     getline(iss, line, ',');
     seedCount = stoi(line);
+
     getline(iss, line, ',');
     width = stoi(line);
+
     getline(iss, line, ',');
     height = stoi(line);
+
     getline(iss, line, ',');
     colourCount = stoi(line);
+
     getline(iss, line, ',');
     maxMoves = stoi(line);
 
@@ -102,25 +106,29 @@ void RunTests(string _seedsetFile, string _resultsFile)
         }
         int s = stoi(line);
 
-        Player *p = new BasicAI();
+        Player *p = new MyAI(); // intended for people to write their AIs to MyAI, BasicAI is just an example one
         Game game(p, width, height, colourCount, maxMoves, s);
         int moves = game.play();
 
         if (moves == -1)
         {
             errorCount++;
-            str += "GAME " + std::to_string(i + 1) + ": **TOO MANY MOVES**\n";
+            cout << "GAME " + std::to_string(i + 1) + ": **TOO MANY MOVES**\n";
+            // Results parser can detect this and generate appropriate message, but to avoid conflicts
+            // with loading code will just put -1 for DNF and print to console the error
+            str += "-1\n";
         }
         else
         {
             sum += moves;
-            str += "GAME " + std::to_string(i + 1) + ": " + std::to_string(moves) + "\n";
+//            str += "GAME " + std::to_string(i + 1) + ": " + std::to_string(moves) + "\n";
+            str += std::to_string(moves) + "\n"; // for simplicity
         }
     }
 
     std::ofstream out(_resultsFile);
-    out << "TOTAL MOVES: " << std::to_string(sum) << "\n";
-    out << "AVG. MOVES: " << std::to_string(sum / seedCount) << "\n";
+//    out << "TOTAL MOVES: " << std::to_string(sum) << "\n";
+//    out << "AVG. MOVES: " << std::to_string(sum / seedCount) << "\n";
     out << str;
 
     out.close();
