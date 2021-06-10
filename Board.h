@@ -80,7 +80,7 @@ Board::Board(int seed, int colours, int w, int h)
  */
 bool Board::outOfBounds(int row, int col)
 {
-    return row < 0 || col < 0 || row >= height || col >= height;
+    return row < 0 || col < 0 || row >= height || col >= width;
 }
 
 /* == Board::isValidMove ==
@@ -107,7 +107,7 @@ bool Board::isValidMove(int row, int col, int colour)
 bool Board::makeMove(int row, int col, int colour)
 {
     // Player made an invalid move
-    if (!isValidMove(row, col, colour)) return true;
+    if (!isValidMove(row, col, colour)) return false;
 
     floodFill(row, col, grid[row][col], colour);
 
