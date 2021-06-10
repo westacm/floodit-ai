@@ -8,25 +8,31 @@
 #include "Player.h"
 #include "BoardSimple.h"
 
-class BasicAI : public Player {
+class BasicAI : public Player
+{
 private:
 
 public:
-    BasicAI(std::string n="Basic AI") : Player(n) { displayBoard = false; }
+    BasicAI(std::string n = "Basic AI") : Player(n)
+    { displayBoard = false; }
 
-    bool getMove(BoardSimple board, int& colour, int& row, int& col);
+    bool getMove(BoardSimple board, int &colour, int &row, int &col);
 };
 
 /* == BasicAI::getMove ==
  * Chooses it's moved based on the first colour it finds from left-right and top-bottom.
  * Row and col are always 0, it looks for the first colour which is not the same as the one at [0][0].
  */
-bool BasicAI::getMove(BoardSimple board, int &colour, int &row, int &col) {
+bool BasicAI::getMove(BoardSimple board, int &colour, int &row, int &col)
+{
 
     int i = board.grid[0][0];
-    for(int r = 0; r < board.width; r++) {
-        for(int c = 0; c < board.height; c++) {
-            if(board.grid[r][c] != i) {
+    for (int r = 0; r < board.width; r++)
+    {
+        for (int c = 0; c < board.height; c++)
+        {
+            if (board.grid[r][c] != i)
+            {
                 row = 0;
                 col = 0;
                 colour = board.grid[r][c];

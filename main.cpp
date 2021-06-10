@@ -17,18 +17,17 @@ using std::string;
 
 void Menu();
 
-void menu_gen();
+void Menu_GenerateSeedset();
 
-void generateSeedSet(std::string filepath, int seeds = 1000, int width = 20, int height = 20, int colourCount = 6, int totalMoves = 100);
+void GenerateSeedset(std::string _path, int _seedCount = 1000, int _width = 20, int _height = 20, int _colorCount = 6, int _maxMoves = 100);
 
-void RunAI();
+void Menu_RunAI();
 
 void RunTests(string _seedsetFile, string _resultsFile);
 
 int main()
 {
     Menu();
-
     return 0;
 }
 
@@ -42,21 +41,21 @@ void Menu()
 
     char choice;
     cin >> choice;
-    while (choice < 1 || choice > 2)
+    while (choice < '1' || choice > '2')
     {
         cout << "Please enter valid input.\n";
         cin >> choice;
     }
 
-    if (choice == 1)
-    { RunAI(); }
-    else if (choice == 2)
-    { menu_gen(); }
+    if (choice == '1')
+    { Menu_RunAI(); }
+    else if (choice == '2')
+    { Menu_GenerateSeedset(); }
     else
     { cout << "ERROR: Invalid input passed through.\n"; }
 }
 
-void RunAI()
+void Menu_RunAI()
 {
     string seedset, results;
     cout << "Enter the filepath of the seedset to run (e.g. seedsets/test_set.txt):\n";
@@ -78,9 +77,9 @@ void RunTests(string _seedsetFile, string _resultsFile)
     getline(seedsetInput, line);
 
     std::istringstream iss(line);
-    int seeds, width, height, colourCount, totalMoves;
+    int seedCount, width, height, colourCount, maxMoves;
     getline(iss, line, ',');
-    seeds = stoi(line);
+    seedCount = stoi(line);
     getline(iss, line, ',');
     width = stoi(line);
     getline(iss, line, ',');
@@ -88,71 +87,92 @@ void RunTests(string _seedsetFile, string _resultsFile)
     getline(iss, line, ',');
     colourCount = stoi(line);
     getline(iss, line, ',');
-    totalMoves = stoi(line);
+    maxMoves = stoi(line);
 
     int sum = 0;
+    int errorCount = 0;
     string str = "";
-    while (getline(seedsetInput, line))
+    for (int i = 0; i < seedCount; i++)
     {
+        getline(seedsetInput, line);
+        if (line.empty())
+        {
+            cout << "ERROR: The test found an empty line in the given seedset.\n";
+            return;
+        }
         int s = stoi(line);
+
         Player *p = new BasicAI();
-        Game game(p, width, height, colourCount, totalMoves, s);
+        Game game(p, width, height, colourCount, maxMoves, s);
         int moves = game.play();
-        sum += moves;
-        str += std::to_string(moves);
-        str += "\n";
+
+        if (moves == -1)
+        {
+            errorCount++;
+            str += "GAME " + std::to_string(i + 1) + ": **TOO MANY MOVES**\n";
+        }
+        else
+        {
+            sum += moves;
+            str += "GAME " + std::to_string(i + 1) + ": " + std::to_string(moves) + "\n";
+        }
     }
 
     std::ofstream out(_resultsFile);
-    out << sum << "\n";
+    out << "TOTAL MOVES: " << std::to_string(sum) << "\n";
+    out << "AVG. MOVES: " << std::to_string(sum / seedCount) << "\n";
     out << str;
-
 
     out.close();
     seedsetInput.close();
 }
 
-void menu_gen()
+void Menu_GenerateSeedset()
 {
     string filepath;
     int seeds, width, height, colourCount, totalMoves;
+
     cout << "(use '1000 20 20 6 300 seedsets/[filename].txt' for quick setup)\n";
     cout << "Enter a number of seeds to generate:\n";
     cin >> seeds;
     cin.ignore();
+
     cout << "Enter the width of the boards:\n";
     cin >> width;
     cin.ignore();
+
     cout << "Enter the height of the boards:\n";
     cin >> height;
     cin.ignore();
+
     cout << "Enter the number of colours on the boards:\n";
     cin >> colourCount;
     cin.ignore();
+
     cout << "Enter the maximum number of moves per board allowed:\n";
     cin >> totalMoves;
     cin.ignore();
 
-    cout << "Enter the filepath for the generated seed set (e.g. seedsets/test_set.txt):\n";
+    cout << "Enter the filepath for the generated seed set (e.g. seedsets/[filename].txt):\n";
     cin >> filepath;
     cin.ignore();
 
-    generateSeedSet(filepath, seeds, width, height, colourCount, totalMoves);
+    GenerateSeedset(filepath, seeds, width, height, colourCount, totalMoves);
 }
 
-void generateSeedSet(std::string filepath, int seeds, int width, int height, int colourCount, int totalMoves)
+void GenerateSeedset(std::string _path, int _seedCount, int _width, int _height, int _colorCount, int _maxMoves)
 {
-    std::ofstream out(filepath);
+    std::ofstream seedsetOutput(_path);
 
     // Write the settings of the set to the top of the file
-    out << seeds << "," << width << "," << height << "," << colourCount << "," << totalMoves << "\n";
+    seedsetOutput << _seedCount << "," << _width << "," << _height << "," << _colorCount << "," << _maxMoves;
 
     // Write each generated seed to the file
     srand(time(NULL));
-    for (int i = 0; i < seeds; i++)
+    for (int i = 0; i < _seedCount; i++)
     {
-        out << rand() * rand() << "\n";
+        seedsetOutput << "\n" << rand() * rand();
     }
 
-    out.close();
+    seedsetOutput.close();
 }
